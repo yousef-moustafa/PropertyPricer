@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container" style="margin-top:40px;">
+            <h4 class="text-monospace">Submitted Details: </h4>
+            {% if data %}
+
+                <div class="btn-group btn-group-toggle form-group mb-5 mt-4" style="display: flex; flex-direction: row;">
+                    {% for key, value in data.items() %}
+                        <label style="width:100%;" class="btn btn-dark">
+                            <p class="text-monospace"><strong>{{ key|capitalize}}: </strong> <br> {{ value|lower|capitalize}}</p>
+                        </label>
+                    {% endfor %}
+                </div>
+        </div>
+    </section>
+    <hr>
+    <section>
+        <div class="container" style="margin-top:40px; text-align:center;">
+            <h2 class="text-monospace">Predicted price for this property is: </h2>
+            <div class="btn-group btn-group-toggle form-group mb-5 mt-4" style="display: flex; justify-content: center; align-items: center;">
+                    <label class="btn btn-success">
+                        <p class="text-monospace" style="font-size:25px;"> <strong>{{ '{:,.0f}'.format(predicted_price) }} EGP</strong></p>
+                    </label>
+            </div>
+            <div>
+                {% else %}
+                    <p>No data available</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section>
+        <div class="container" style="margin-top: 40px;">
+            <h4 class="text-monospace">About our AI model: </h4>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Data Collection</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Source of Data</h5>
+                            <p class="card-text">
+                                The dataset used for this housing price prediction model was gathered from various reliable sources,
+                                including multiple real estate listing platforms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Data Preprocessing</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Data Preparation</h5>
+                            <p class="card-text">
+                                Before training the model, the dataset underwent preprocessing. This included handling missing values and scaling numerical features.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">ML Model</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Model Development</h5>
+                            <p class="card-text">
+                                The prediction is based on a Polynomial Linear Regressor model.
+                                The model achieves an accuracy of 90% in predicting property prices based on the provided details
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </section>
+    <hr>
+    <br>
+{% endblock %}

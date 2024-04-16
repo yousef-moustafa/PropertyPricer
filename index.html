@@ -1,0 +1,90 @@
+{# form.html #}
+{% extends 'layout.html' %}
+
+{% block title %}
+    Form - PredictPrice
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="banner">
+            <div class="text-box rounded-right">
+                <h1 class="dark">Unlock Property Insights: <br> Predict Prices with Precision!</h1>
+            </div>
+        </div>
+        <article class="clearfix">
+            <div class="left-block clearfix">
+                <div class="left-inner left-block">
+                    <h4>Choose Location:</h4>
+                    <hr>
+                    <div id="map"></div>
+                </div>
+                <div class="left-inner right-block" style="padding-top: 120px; ">
+                    <h5>Selected Location:</h5>
+                    <form action="/getDetails" method="post">
+                        <div class="mb-4 mt-4">
+                            <label for="district" class="form-label">District:</label>
+                            <input type="text" class="form-control" id="district" name="district" readonly value="{{ district }}">
+                        </div>
+                        <div class="mb-2">
+                            <label for="latitude" class="form-label">Latitude:</label>
+                            <input type="text" class="form-control" id="latitude" name="lat" readonly value="{{ latitude }}">
+                        </div>
+                        <div class="mb-4">
+                            <label for="longitude" class="form-label">Longitude:</label>
+                            <input type="text" class="form-control" id="longitude" name="lng" readonly value="{{ longitude }}">
+                        </div>
+                </div>
+            </div>
+                <div class="right-block">
+                    <div class="right-inner">
+                        <h4>Property Details: </h4>
+                        <hr>
+                            <div class="col-md-2">
+                                <div class="btn-group btn-group-toggle form-group mb-5 mt-4" data-toggle="buttons">
+                                    {% for type in types %}
+                                        <label class="btn btn-dark {% if type == selected_type %} active {% endif %} btn-sm">
+                                            <input type="radio" name="type" id="{{ type }}" value="{{ type }}"> {{ type }}
+                                        </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="row centered-container mb-3">
+                                <div class="col-sm-5">
+                                    <label>Bedrooms</label>
+                                    <select class="form-control" name="bedroom">
+                                        <option disabled selected value="">0</option>
+                                        {% for bedroom in bedrooms %}
+                                            <option value="{{ bedroom }}"> {{ bedroom }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <label for="exampleFormControlSelect1">Bathrooms</label>
+                                    <select class="form-control" name="bathroom">
+                                        <option disabled selected value="">0</option>
+                                        {% for bathroom in bathrooms %}
+                                            <option value="{{ bathroom }}"> {{ bathroom }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row mb-3">
+                                <div class="col mb-4">
+                                    <label for="formControlRange">Area (m<sup>2</sup>): <span id="currentArea">20</span></label>
+                                    <input type="range" min="0" max="600" value="20" step="10" name="area" id="area" class="form-control-range mt-2">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-dark btn-outline-light btn-lg my-1">Predict Price</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        </main>
+{% endblock %}
