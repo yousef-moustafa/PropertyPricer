@@ -9,13 +9,15 @@ from sklearn.model_selection import train_test_split
 # Serialises model for use in flask server
 import pickle
 
-df = pd.read_csv('database/data.csv')
+from scraping import getListings
+
+df = pd.read_csv('dataset.csv')
 df = df.dropna()
 
 # ***** Clean DataFrame (Remove Outliers) *****
 
 # Create new input feature called Price Per Meter
-df['Price_per_meter'] = df['Price'] / df['Area']
+df['Price_per_meter'] = df['Price'] / df['Size (in meters)']
 
 def remove_PPM_outliers(df):
     df_out = pd.DataFrame()

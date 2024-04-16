@@ -1,3 +1,6 @@
 pandas
 numpy
 scikit-learn
+bs4
+requests
+lxml

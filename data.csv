@@ -1,4 +1,4 @@
-Price,Area,Bedrooms,Bathrooms,Type
+Price,Size (in meters),Bedrooms,Bathrooms,Type
 6070000,200,3,3,APARTMENT
 1750000,78,2,1,APARTMENT
 3700000,150,3,2,APARTMENT
