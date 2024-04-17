@@ -11,7 +11,7 @@ import pickle
 
 from scraping import getListings
 
-df = pd.read_csv('dataset.csv')
+df = pd.read_csv('data.csv')
 df = df.dropna()
 
 # ***** Clean DataFrame (Remove Outliers) *****
